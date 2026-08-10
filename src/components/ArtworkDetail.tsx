@@ -71,7 +71,7 @@ export function ArtworkDetail({ artwork, media, prev, next }: Props) {
           </p>
 
           <h1
-            className="mt-3 font-display text-4xl leading-tight text-ink sm:text-5xl"
+            className="mt-3 font-display text-4xl leading-[var(--leading-bangla)] text-ink sm:text-5xl"
             lang={lang}
           >
             {isCouple ? (

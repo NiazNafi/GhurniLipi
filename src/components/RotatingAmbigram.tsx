@@ -118,7 +118,7 @@ export function RotatingAmbigram({
             aria-hidden
             className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center pb-3 transition-opacity duration-300 group-hover:opacity-0"
           >
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-ink/85 px-3 py-1.5 text-[11px] leading-none font-medium tracking-wide text-paper backdrop-blur-sm">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-ink/85 px-3 py-1.5 text-[11px] leading-[var(--leading-bangla)] font-medium tracking-wide text-paper backdrop-blur-sm">
               <RotateGlyph />
               {t("rotateHintTap", lang)}
             </span>

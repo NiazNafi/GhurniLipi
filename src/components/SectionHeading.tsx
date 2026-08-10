@@ -20,7 +20,7 @@ export function SectionHeading({ kicker, title, body, align = "left" }: Props) {
         {t(kicker, lang)}
       </p>
       <h2
-        className="mt-3 font-display text-3xl leading-tight text-ink sm:text-4xl"
+        className="mt-3 font-display text-3xl leading-[var(--leading-bangla)] text-ink sm:text-4xl"
         lang={lang}
       >
         {t(title, lang)}

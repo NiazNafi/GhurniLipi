@@ -166,7 +166,7 @@ export function MotionSection() {
           </p>
           <h2
             id="motion-heading"
-            className="mt-3 font-display text-3xl leading-tight text-paper sm:text-4xl"
+            className="mt-3 font-display text-3xl leading-[var(--leading-bangla)] text-paper sm:text-4xl"
             lang={lang}
           >
             {t("motionTitle", lang)}

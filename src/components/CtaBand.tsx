@@ -20,7 +20,7 @@ export function CtaBand() {
     <section className="border-t border-bone bg-mist/40">
       <div className="mx-auto max-w-3xl px-4 py-16 text-center sm:px-6 sm:py-20">
         <h2
-          className="font-display text-3xl leading-tight text-ink sm:text-4xl"
+          className="font-display text-3xl leading-[var(--leading-bangla)] text-ink sm:text-4xl"
           lang={lang}
         >
           {t("singleTitle", lang)}

@@ -57,7 +57,7 @@ export function SiteHeader() {
             alt=""
             className="h-8 w-8"
           />
-          <span className="font-display text-xl leading-none text-ink sm:text-[1.4rem]">
+          <span className="font-display text-xl leading-[var(--leading-bangla)] text-ink sm:text-[1.4rem]">
             {SITE.name.bn}
           </span>
         </Link>

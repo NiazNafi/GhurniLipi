@@ -33,6 +33,24 @@
   --font-body: var(--font-hind), "Hind Siliguri", "Noto Sans Bengali",
     "Nirmala UI", ui-sans-serif, system-ui, sans-serif;
 
+  /**
+   * Minimum line-height for any Bangla text. Do not go below this.
+   *
+   * Bengali stacks matras and reph above the headline and conjuncts below it,
+   * and these fonts under-declare how far. Measured ink extents per em:
+   *
+   *              declared ascent   actual ink ascent   min line-height
+   *   Tiro Bangla     0.76              0.92               1.33
+   *   Hind Siliguri   1.12              0.94               1.26
+   *   Nirmala UI      1.08              1.08               1.33   (Windows fallback)
+   *
+   * Below 1.33 the ink leaves its line box, and any ancestor with
+   * overflow:hidden then slices the top off the letterforms. Tailwind's
+   * leading-none (1) and leading-tight (1.25) are both unsafe here, which is
+   * exactly how the headline came to be clipped.
+   */
+  --leading-bangla: 1.35;
+
   --ease-reveal: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -62,8 +80,16 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* Bangla display text sits a touch lower and needs more line room for the
-     matra and the descenders below the baseline. */
+  /**
+   * Bangla body copy gets generous line room — the script carries more above
+   * and below the baseline than Latin at the same size.
+   *
+   * Headings must NOT depend on this rule. It is a base-layer declaration, so
+   * it loses to any Tailwind `leading-*` utility: an element with no leading
+   * class inherits a safe 1.65, while one with `leading-tight` silently drops
+   * to 1.25 and clips. Headings therefore set leading-[var(--leading-bangla)]
+   * explicitly rather than trusting this to catch them.
+   */
   :lang(bn) {
     line-height: 1.65;
   }
@@ -75,6 +101,8 @@
     font-weight: 400;
     letter-spacing: -0.005em;
   }
+
+  /* Bangla letterspacing is handled unlayered at the end of this file. */
 
   ::selection {
     background-color: var(--color-terracotta-soft);
@@ -96,14 +124,21 @@
   border-color: color-mix(in srgb, var(--color-bone) 80%, transparent);
 }
 
-/* The wash behind hero and section headers, echoing the gradient baked into
-   every piece: warm at the top, cool at the bottom. */
+/**
+ * The wash behind the hero, echoing the gradient baked into every piece:
+ * warm at the top, cool at the bottom.
+ *
+ * Kept deliberately faint and finished well before halfway. The artworks carry
+ * their own terracotta-to-pale gradient, so a strong wash lands the same colour
+ * behind the same colour and the tile edge dissolves — the whole hero flattens
+ * into one beige field. It should tint the type area and then get out of the way.
+ */
 @utility artwork-wash {
   background-image: linear-gradient(
     180deg,
-    color-mix(in srgb, var(--color-terracotta) 22%, transparent) 0%,
-    color-mix(in srgb, var(--color-terracotta) 6%, transparent) 38%,
-    color-mix(in srgb, var(--color-mist) 70%, transparent) 100%
+    color-mix(in srgb, var(--color-terracotta) 14%, transparent) 0%,
+    color-mix(in srgb, var(--color-terracotta) 3%, transparent) 26%,
+    transparent 46%
   );
 }
 
@@ -141,4 +176,28 @@
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
+}
+
+/* ---------------------------------------------------------------------------
+   Bangla is never letterspaced. Ever.
+
+   Bengali words are held together by a continuous headstroke (মাত্রা), with
+   matras and conjuncts hanging off it. Tracking cuts that stroke into pieces,
+   so a tracked label stops reading as a word and reads as loose syllables
+   instead. Negative tracking is no better — it collides the matras. On a
+   lettering brand this is the single most visible thing to get wrong.
+
+   This rule is deliberately OUTSIDE any @layer.
+
+   Tracking arrives from Tailwind utilities such as `tracking-[0.18em]`, which
+   live in the `utilities` layer. Cascade layers beat specificity outright, so
+   the same rule inside `@layer base` loses to every utility no matter how
+   specific it is — which is exactly how this shipped letterspaced the first
+   time. Unlayered declarations outrank all layered ones, so this wins while
+   leaving the utilities working for the English side, which is why they are on
+   those elements at all.
+   --------------------------------------------------------------------------- */
+
+:lang(bn) {
+  letter-spacing: normal;
 }

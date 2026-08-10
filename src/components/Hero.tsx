@@ -28,21 +28,36 @@ export function Hero({ artwork, media, framedPhoto }: Props) {
   const [first, second] = artwork.reads;
 
   return (
-    <section className="relative overflow-hidden">
+    // No overflow-hidden on this section: the wash is inset-0 so it never needs
+    // clipping, and clipping is what turns a too-tight line box into a visibly
+    // sliced letterform — see the --leading-bangla note in globals.css.
+    <section className="relative">
       <div aria-hidden className="artwork-wash absolute inset-0" />
 
-      <div className="relative mx-auto max-w-6xl px-4 pt-10 pb-14 sm:px-6 sm:pt-16 sm:pb-20">
-        {/* The visual side is given the larger share — this is the hook, and
-            the headline only has to name what the artwork is already doing. */}
-        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-14">
+      <div className="relative mx-auto max-w-6xl px-4 pt-8 pb-14 sm:px-6 sm:pt-16 sm:pb-20">
+        {/*
+          Two different layouts, one DOM.
+
+          On a phone this is a single column and the *artwork* comes third —
+          straight after the headline, ahead of the prose and the buttons. It
+          has to, because §4.1 asks for the idea to land before any scrolling,
+          and measured on a 375x812 screen the artwork previously started at
+          552px with 552px of text stacked above it.
+
+          From lg up it becomes the two-column layout: words left, artwork and
+          product shot right. `display: contents` lets the two groups collapse
+          so their children can be ordered individually on mobile, then behave
+          as normal columns again on desktop.
+        */}
+        <div className="flex flex-col gap-y-6 lg:grid lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-center lg:gap-10 lg:gap-x-14">
           {/* ── words ── */}
-          <div className="order-1">
-            <p className="text-[11px] tracking-[0.22em] text-oxblood uppercase">
+          <div className="contents lg:block">
+            <p className="order-1 text-[11px] tracking-[0.22em] text-oxblood uppercase lg:order-none">
               {t("heroKicker", lang)}
             </p>
 
             <h1
-              className="mt-4 font-display text-[2.6rem] leading-[1.08] text-ink sm:text-6xl lg:text-[4.1rem]"
+              className="order-2 -mt-2 font-display text-[2.4rem] leading-[var(--leading-bangla)] text-ink sm:text-6xl lg:order-none lg:mt-4 lg:text-[4.1rem]"
               lang={lang}
             >
               {t("heroTitle", lang)
@@ -54,9 +69,12 @@ export function Hero({ artwork, media, framedPhoto }: Props) {
                 ))}
             </h1>
 
-            {/* The two names, stated plainly. Whatever the artwork is doing,
-                the promise should be readable in one glance. */}
-            <p className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 font-display text-2xl text-oxblood sm:text-3xl">
+            {/*
+              The two names, spelled out. Hidden on mobile: the rotating piece
+              already captions which name is showing, so repeating them here
+              only pushed the artwork further down a screen that had none.
+            */}
+            <p className="order-5 hidden flex-wrap items-center gap-x-3 gap-y-1 font-display text-2xl text-oxblood lg:order-none lg:mt-6 lg:flex lg:text-3xl">
               <span lang={lang}>{first[lang]}</span>
               <span aria-hidden className="text-ink-faint">
                 ·
@@ -65,13 +83,13 @@ export function Hero({ artwork, media, framedPhoto }: Props) {
             </p>
 
             <p
-              className="mt-5 max-w-md leading-relaxed text-ink-soft"
+              className="order-6 max-w-md leading-relaxed text-ink-soft lg:order-none lg:mt-5"
               lang={lang}
             >
               {t("heroBody", lang)}
             </p>
 
-            <div className="mt-8 flex flex-wrap items-center gap-3">
+            <div className="order-4 flex flex-wrap items-center gap-3 lg:order-none lg:mt-8">
               <Link
                 href="/commission"
                 className="rounded-full bg-ink px-6 py-3.5 text-sm font-medium text-paper transition-colors hover:bg-oxblood"
@@ -88,16 +106,18 @@ export function Hero({ artwork, media, framedPhoto }: Props) {
           </div>
 
           {/* ── the piece, and the object ── */}
-          <div className="order-2 grid gap-4 sm:grid-cols-[minmax(0,1.45fr)_minmax(0,0.85fr)] sm:items-start">
-            <RotatingAmbigram
-              artwork={artwork}
-              media={media}
-              priority
-              autoDemo
-              sizes="(min-width: 1024px) 380px, (min-width: 640px) 55vw, 92vw"
-            />
+          <div className="contents lg:grid lg:grid-cols-[minmax(0,1.45fr)_minmax(0,0.85fr)] lg:items-start lg:gap-4">
+            <div className="order-3 lg:order-none">
+              <RotatingAmbigram
+                artwork={artwork}
+                media={media}
+                priority
+                autoDemo
+                sizes="(min-width: 1024px) 380px, (min-width: 640px) 55vw, 92vw"
+              />
+            </div>
 
-            <figure className="mt-1 sm:mt-0">
+            <figure className="order-7 lg:order-none">
               <div
                 className="overflow-hidden rounded-[3px] hairline"
                 style={{ aspectRatio: framedPhoto.aspect }}
