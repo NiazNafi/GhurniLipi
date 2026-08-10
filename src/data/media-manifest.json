@@ -1,0 +1,520 @@
+{
+  "generated": "run `npm run assets` to regenerate — do not edit by hand",
+  "storage": {
+    "provider": "supabase",
+    "bucket": "media",
+    "baseUrl": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media"
+  },
+  "images": {
+    "adib-rabita": {
+      "slug": "adib-rabita",
+      "renditions": [
+        {
+          "width": 480,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/adib-rabita-480.9311be50.webp",
+          "file": "artwork/adib-rabita-480.webp"
+        },
+        {
+          "width": 960,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/adib-rabita-960.6de98c6b.webp",
+          "file": "artwork/adib-rabita-960.webp"
+        },
+        {
+          "width": 1600,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/adib-rabita-1600.b867a9a0.webp",
+          "file": "artwork/adib-rabita-1600.webp"
+        }
+      ],
+      "width": 4500,
+      "height": 4500,
+      "aspect": 1,
+      "blurDataURL": "data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAACwAQCdASoQABAAAwBSJQBOgCHUZexgAP7F/eXoLEkiLBAja12tEcnYouLUIeom9mmjENshfrUw2VsXMZeHpfCVJiqJxL/haOAAAA=="
+    },
+    "saiara-akif": {
+      "slug": "saiara-akif",
+      "renditions": [
+        {
+          "width": 480,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/saiara-akif-480.b1f2b60b.webp",
+          "file": "artwork/saiara-akif-480.webp"
+        },
+        {
+          "width": 960,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/saiara-akif-960.901c46e3.webp",
+          "file": "artwork/saiara-akif-960.webp"
+        },
+        {
+          "width": 1600,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/saiara-akif-1600.c978a4cf.webp",
+          "file": "artwork/saiara-akif-1600.webp"
+        }
+      ],
+      "width": 1080,
+      "height": 1080,
+      "aspect": 1,
+      "blurDataURL": "data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAAAQAgCdASoQABAAAwBSJYwCdAEO3knyEtIgAP7WIfL7+D1BROUp1YxE+u+EgXq4wmsyy97PYPoGXJR3qmHn9ij+GXEIDxmEJlrgAA=="
+    },
+    "shourov-taniya": {
+      "slug": "shourov-taniya",
+      "renditions": [
+        {
+          "width": 480,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/shourov-taniya-480.2a628abc.webp",
+          "file": "artwork/shourov-taniya-480.webp"
+        },
+        {
+          "width": 960,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/shourov-taniya-960.0efb6fe2.webp",
+          "file": "artwork/shourov-taniya-960.webp"
+        },
+        {
+          "width": 1600,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/shourov-taniya-1600.01fb1b9f.webp",
+          "file": "artwork/shourov-taniya-1600.webp"
+        }
+      ],
+      "width": 1080,
+      "height": 1080,
+      "aspect": 1,
+      "blurDataURL": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAAAwAgCdASoQABAAAwBSJYwCdAEekrOpc6v/gAD+1iHzxE9ISznVdroiToOrT+1VeHqSWQrCOTs1rTrwsXfDUmpuLuTtLeKB4zCEy1wA"
+    },
+    "tahsina-soyeb": {
+      "slug": "tahsina-soyeb",
+      "renditions": [
+        {
+          "width": 480,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/tahsina-soyeb-480.e5e8eec0.webp",
+          "file": "artwork/tahsina-soyeb-480.webp"
+        },
+        {
+          "width": 960,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/tahsina-soyeb-960.4f07d57a.webp",
+          "file": "artwork/tahsina-soyeb-960.webp"
+        },
+        {
+          "width": 1600,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/tahsina-soyeb-1600.87bcbf7f.webp",
+          "file": "artwork/tahsina-soyeb-1600.webp"
+        }
+      ],
+      "width": 1080,
+      "height": 1080,
+      "aspect": 1,
+      "blurDataURL": "data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAADwAQCdASoQABAAAwBSJQBOgCHpNmHpEAAA/uAGj8TmufZY7EM0JaJIMDcPPikfqshc24nmtqikCvz1wYpYwv+yGiCclvWAAAA="
+    },
+    "abheri": {
+      "slug": "abheri",
+      "renditions": [
+        {
+          "width": 480,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/abheri-480.861cca60.webp",
+          "file": "artwork/abheri-480.webp"
+        },
+        {
+          "width": 960,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/abheri-960.ea68d005.webp",
+          "file": "artwork/abheri-960.webp"
+        },
+        {
+          "width": 1600,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/abheri-1600.afb7c211.webp",
+          "file": "artwork/abheri-1600.webp"
+        }
+      ],
+      "width": 1080,
+      "height": 1080,
+      "aspect": 1,
+      "blurDataURL": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAAAwAgCdASoQABAAAwBSJZQC7AEQNm37y0zVQAD+1RcC+SXymHMzFzMzPz2xbSpjvPIDDfLBX+03LUd9HDMBlm5DbWNsYAAA"
+    },
+    "jarif": {
+      "slug": "jarif",
+      "renditions": [
+        {
+          "width": 480,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/jarif-480.23f9d8be.webp",
+          "file": "artwork/jarif-480.webp"
+        },
+        {
+          "width": 960,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/jarif-960.692e9ca3.webp",
+          "file": "artwork/jarif-960.webp"
+        },
+        {
+          "width": 1600,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/jarif-1600.950a9074.webp",
+          "file": "artwork/jarif-1600.webp"
+        }
+      ],
+      "width": 1080,
+      "height": 1080,
+      "aspect": 1,
+      "blurDataURL": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAACwAQCdASoQABAAAwBSJZwAAuqZbQAAAP7VFwL5JfPisjdOcrFM92aj8VGhRlj4s5Tp0wRSmmv4s7/s2YiMF/A8AAA="
+    },
+    "mihan": {
+      "slug": "mihan",
+      "renditions": [
+        {
+          "width": 480,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/mihan-480.1b9c53f0.webp",
+          "file": "artwork/mihan-480.webp"
+        },
+        {
+          "width": 960,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/mihan-960.a9ad6b63.webp",
+          "file": "artwork/mihan-960.webp"
+        },
+        {
+          "width": 1600,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/mihan-1600.73a919f8.webp",
+          "file": "artwork/mihan-1600.webp"
+        }
+      ],
+      "width": 16000,
+      "height": 9000,
+      "aspect": 1.7778,
+      "blurDataURL": "data:image/webp;base64,UklGRkAAAABXRUJQVlA4IDQAAADQAQCdASoQAAkAAwBSJaQAAsZNM9nQgAD++ht2SfWb2ZWONrcu4rSLCJ9/aR8tSk5AAAAA"
+    },
+    "minhaj": {
+      "slug": "minhaj",
+      "renditions": [
+        {
+          "width": 480,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/minhaj-480.8c50ed2d.webp",
+          "file": "artwork/minhaj-480.webp"
+        },
+        {
+          "width": 960,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/minhaj-960.47e892d6.webp",
+          "file": "artwork/minhaj-960.webp"
+        },
+        {
+          "width": 1600,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/minhaj-1600.1048c530.webp",
+          "file": "artwork/minhaj-1600.webp"
+        }
+      ],
+      "width": 1080,
+      "height": 1080,
+      "aspect": 1,
+      "blurDataURL": "data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAADwAQCdASoQABAAAwBSJZwAAvh7JNPmFqAA/tUXBFOrSvPZGQvAcnOyKAZ4Ci8PmwBxkWDopzVT9YL4prKl/BHb3lNLI2BdgAAAAA=="
+    },
+    "minhaj-alt": {
+      "slug": "minhaj-alt",
+      "renditions": [
+        {
+          "width": 480,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/minhaj-alt-480.1ecead4b.webp",
+          "file": "artwork/minhaj-alt-480.webp"
+        },
+        {
+          "width": 960,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/minhaj-alt-960.a456b8ad.webp",
+          "file": "artwork/minhaj-alt-960.webp"
+        },
+        {
+          "width": 1600,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/minhaj-alt-1600.9ecca91c.webp",
+          "file": "artwork/minhaj-alt-1600.webp"
+        }
+      ],
+      "width": 1080,
+      "height": 1080,
+      "aspect": 1,
+      "blurDataURL": "data:image/webp;base64,UklGRkwAAABXRUJQVlA4IEAAAADwAQCdASoQABAAAwBSJZQCdAEO/ED8VAAA/vOs9pbECmfBghL3R199r8K8W9seyk3G29l8jgCtmBrXXROACUAA"
+    },
+    "musab": {
+      "slug": "musab",
+      "renditions": [
+        {
+          "width": 480,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/musab-480.d8226359.webp",
+          "file": "artwork/musab-480.webp"
+        },
+        {
+          "width": 960,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/musab-960.7c7e127a.webp",
+          "file": "artwork/musab-960.webp"
+        },
+        {
+          "width": 1600,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/musab-1600.b1f680ae.webp",
+          "file": "artwork/musab-1600.webp"
+        }
+      ],
+      "width": 3840,
+      "height": 2160,
+      "aspect": 1.7778,
+      "blurDataURL": "data:image/webp;base64,UklGRkAAAABXRUJQVlA4IDQAAADQAQCdASoQAAkAAwBSJaQAAuQqN9MkAAD++u0IP2dP7O5d+s+JmkstHVHUnzmhTLoAAAAA"
+    },
+    "nafis": {
+      "slug": "nafis",
+      "renditions": [
+        {
+          "width": 480,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/nafis-480.9a22828b.webp",
+          "file": "artwork/nafis-480.webp"
+        },
+        {
+          "width": 960,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/nafis-960.84437c8a.webp",
+          "file": "artwork/nafis-960.webp"
+        },
+        {
+          "width": 1600,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/nafis-1600.29a60a7f.webp",
+          "file": "artwork/nafis-1600.webp"
+        }
+      ],
+      "width": 1080,
+      "height": 1080,
+      "aspect": 1,
+      "blurDataURL": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAACwAQCdASoQABAAAwBSJZwAAuqnS9qAAP7VFwL5JfPir9HtsrVFtRLlV8uEePevhbXrewwq2r9nYSfYWNVO+NkHgAA="
+    },
+    "shreya": {
+      "slug": "shreya",
+      "renditions": [
+        {
+          "width": 480,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/shreya-480.dcd7a0e7.webp",
+          "file": "artwork/shreya-480.webp"
+        },
+        {
+          "width": 960,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/shreya-960.24d3d4ff.webp",
+          "file": "artwork/shreya-960.webp"
+        },
+        {
+          "width": 1600,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/shreya-1600.28b2ca12.webp",
+          "file": "artwork/shreya-1600.webp"
+        }
+      ],
+      "width": 1080,
+      "height": 1080,
+      "aspect": 1,
+      "blurDataURL": "data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAACQAQCdASoQABAAAwBSJZwAAuVuHYAA/tUXAgc2hCOhq8UFiI3Y0pnbh9jAKSqwAAA="
+    },
+    "tonu": {
+      "slug": "tonu",
+      "renditions": [
+        {
+          "width": 480,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/tonu-480.a5f48236.webp",
+          "file": "artwork/tonu-480.webp"
+        },
+        {
+          "width": 960,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/tonu-960.55e2b41d.webp",
+          "file": "artwork/tonu-960.webp"
+        },
+        {
+          "width": 1600,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/tonu-1600.d3cc72ad.webp",
+          "file": "artwork/tonu-1600.webp"
+        }
+      ],
+      "width": 1080,
+      "height": 1080,
+      "aspect": 1,
+      "blurDataURL": "data:image/webp;base64,UklGRkQAAABXRUJQVlA4IDgAAAAQAgCdASoQABAAAwBSJYwCdAEPAY5jHl6AAP7gBpFTrbJDPxMDZtTYi5LjGdE0GSzC5U6ZB4EAAA=="
+    },
+    "towsif": {
+      "slug": "towsif",
+      "renditions": [
+        {
+          "width": 480,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/towsif-480.4a29fe7e.webp",
+          "file": "artwork/towsif-480.webp"
+        },
+        {
+          "width": 960,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/towsif-960.ec8140c2.webp",
+          "file": "artwork/towsif-960.webp"
+        },
+        {
+          "width": 1600,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/towsif-1600.76501ada.webp",
+          "file": "artwork/towsif-1600.webp"
+        }
+      ],
+      "width": 1080,
+      "height": 1080,
+      "aspect": 1,
+      "blurDataURL": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAADwAQCdASoQABAAAwBSJYwCdAEO/x+ABXAA/uAGlzLNxpNhs9I3byFnnz1GxKvKOQLWt5CrqPgbrO3elZDRBLF2AAA="
+    },
+    "bangla": {
+      "slug": "bangla",
+      "renditions": [
+        {
+          "width": 480,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/bangla-480.c9ecd1b3.webp",
+          "file": "artwork/bangla-480.webp"
+        },
+        {
+          "width": 960,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/bangla-960.7451a2e7.webp",
+          "file": "artwork/bangla-960.webp"
+        },
+        {
+          "width": 1600,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/bangla-1600.5805acc9.webp",
+          "file": "artwork/bangla-1600.webp"
+        }
+      ],
+      "width": 1080,
+      "height": 1080,
+      "aspect": 1,
+      "blurDataURL": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAAAQAgCdASoQABAAAwBSJZwAD46wb/+Es3mgAP74tU7eBFCTE4uE9BNZACRQRc7fY3gQXBUvuvEvU7I9CWfpmk45+vVFpBwA"
+    },
+    "shunnota": {
+      "slug": "shunnota",
+      "renditions": [
+        {
+          "width": 480,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/shunnota-480.d69b2cfa.webp",
+          "file": "artwork/shunnota-480.webp"
+        },
+        {
+          "width": 960,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/shunnota-960.d9eb28b2.webp",
+          "file": "artwork/shunnota-960.webp"
+        },
+        {
+          "width": 1600,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/shunnota-1600.1705be16.webp",
+          "file": "artwork/shunnota-1600.webp"
+        }
+      ],
+      "width": 1080,
+      "height": 1080,
+      "aspect": 1,
+      "blurDataURL": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAAAwAgCdASoQABAAAwBSJYwCdAYuRvt3ibWAAAD+4AaRU2aUwbJMR+Yj49/KFER7VAqbd3vsXXGaMfDZimMm4anwiFZ9NuG5hjksZTAA"
+    },
+    "sompriti": {
+      "slug": "sompriti",
+      "renditions": [
+        {
+          "width": 480,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/sompriti-480.aa24ca23.webp",
+          "file": "artwork/sompriti-480.webp"
+        },
+        {
+          "width": 960,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/sompriti-960.517088c9.webp",
+          "file": "artwork/sompriti-960.webp"
+        },
+        {
+          "width": 1600,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/sompriti-1600.ebf2a8dc.webp",
+          "file": "artwork/sompriti-1600.webp"
+        }
+      ],
+      "width": 1080,
+      "height": 1080,
+      "aspect": 1,
+      "blurDataURL": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAAAwAgCdASoQABAAAwBSJQBOjXAAWbT7uBN/wAD+1RC2gYgKt4eXV+EuSiF9Re+amJfHitlwTrce1xVUQTry/itqJ20j4toWEYEqlgAA"
+    },
+    "framed-pair-daylight": {
+      "slug": "framed-pair-daylight",
+      "renditions": [
+        {
+          "width": 480,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/photo/framed-pair-daylight-480.cb14c0be.webp",
+          "file": "photo/framed-pair-daylight-480.webp"
+        },
+        {
+          "width": 960,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/photo/framed-pair-daylight-960.358395c0.webp",
+          "file": "photo/framed-pair-daylight-960.webp"
+        },
+        {
+          "width": 1600,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/photo/framed-pair-daylight-1600.83231e76.webp",
+          "file": "photo/framed-pair-daylight-1600.webp"
+        }
+      ],
+      "width": 2048,
+      "height": 1977,
+      "aspect": 1.0359,
+      "blurDataURL": "data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAAAQAgCdASoQAA8AAwBSJYgCdAD0scqMlyfgAP1vU4+nf40YekRR5ZgfKePMcuSZSnjPK9Dv8tyRmgvInI9z9cWZwzQ22VSBA9PlHKpjEeHnM9tz2cXjtKCXmg2J8cEafeYPqCRBRGIAAA=="
+    },
+    "framed-pair-lowlight": {
+      "slug": "framed-pair-lowlight",
+      "renditions": [
+        {
+          "width": 480,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/photo/framed-pair-lowlight-480.66cbcd9c.webp",
+          "file": "photo/framed-pair-lowlight-480.webp"
+        },
+        {
+          "width": 960,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/photo/framed-pair-lowlight-960.7348532d.webp",
+          "file": "photo/framed-pair-lowlight-960.webp"
+        },
+        {
+          "width": 1600,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/photo/framed-pair-lowlight-1600.bb6552df.webp",
+          "file": "photo/framed-pair-lowlight-1600.webp"
+        }
+      ],
+      "width": 1536,
+      "height": 2048,
+      "aspect": 0.75,
+      "blurDataURL": "data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAADwAQCdASoMABAAAwBSJZQAAueGFSNK6HAA/vkqDPNPtj1laKcTfO5GVpbLGhP5UiNMNgbiJy9gP5fG77wbJRbgqtaRLlmh2k3QslTQvwAAAA=="
+    }
+  },
+  "brand": {
+    "marks": [
+      {
+        "width": 96,
+        "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/brand/mark-96.cc9cee9e.png",
+        "file": "brand/mark-96.png"
+      },
+      {
+        "width": 192,
+        "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/brand/mark-192.ea11acb6.png",
+        "file": "brand/mark-192.png"
+      },
+      {
+        "width": 384,
+        "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/brand/mark-384.051b7bc5.png",
+        "file": "brand/mark-384.png"
+      }
+    ],
+    "icon": {
+      "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/icon.73e8899a.png",
+      "file": "icon.png"
+    }
+  },
+  "motion": {
+    "slug": "wallet-reveal",
+    "renditions": [
+      {
+        "width": 480,
+        "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/media/wallet-reveal-480.9216eeb8.mp4",
+        "file": "media/wallet-reveal-480.mp4"
+      },
+      {
+        "width": 720,
+        "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/media/wallet-reveal-720.cb517dec.mp4",
+        "file": "media/wallet-reveal-720.mp4"
+      }
+    ],
+    "posters": [
+      {
+        "width": 480,
+        "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/media/wallet-reveal-poster-480.d795e1d1.webp",
+        "file": "media/wallet-reveal-poster-480.webp"
+      },
+      {
+        "width": 720,
+        "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/media/wallet-reveal-poster-720.4d849351.webp",
+        "file": "media/wallet-reveal-poster-720.webp"
+      }
+    ],
+    "width": 928,
+    "height": 1920,
+    "aspect": 0.4833,
+    "blurDataURL": "data:image/webp;base64,UklGRmAAAABXRUJQVlA4IFQAAADwAQCdASoIABAAAwBSJYwC7AD0Y/8qDAAA/u1jWDLYOR+iQHuc2PIaNoPwi4nZdOOaYt8X4o0cshjEySbxKURD5rKEWNkk33mhrgEGOOpzsLm8EAA="
+  }
+}

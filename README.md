@@ -1,36 +1,253 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ঘূর্ণিলিপি / ghurnilipi
 
-## Getting Started
-
-First, run the development server:
+MVP1 of the ghurnilipi website — rotational ambigrams in Bangla lettering.
+Built from [requirements.md](requirements.md).
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev          # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+It runs with no configuration at all. Supabase is optional (see below).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## What is in MVP1
 
-## Learn More
+| | |
+|---|---|
+| **Landing page** | Sections in the fixed order from §4.1 — signature couple's piece, motion section, single names — then couples, ready-made words, and a closing call to action |
+| **Rotation reveal** | Every piece turns 180° on tap, click, or keyboard. §4.2 |
+| **Gallery** | Filter by type and script, counts per facet, shareable filtered URLs, detail view per piece with prev/next. §4.4 |
+| **Commission intake** | Both names in Bangla and Latin, script preference, product, size, occasion, deadline, notes, contact channel. Writes to Supabase. §4.3 |
+| **Process / FAQ** | Turnaround, deliverables, payment, courier, and "not every name works" said up front. §4.8 |
+| **Bilingual** | Bangla-first with an English toggle, persisted. §4.6 |
+| **Chat paths** | WhatsApp and Messenger given equal billing to the form. §4.7 |
 
-To learn more about Next.js, take a look at the following resources:
+### Deliberately not in MVP1
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Checkout and payment.** No aggregator integration (SSLCommerz / aamarPay /
+ShurjoPay), no courier rate table, no COD logic, no digital delivery links, no
+order status page. Two reasons, both outside the code: it needs a merchant
+account, and it needs the pricing and deposit rules that are still open
+questions in §7. The commission flow therefore captures the request and the
+reply happens over the channel the buyer picked. The database schema already
+carries `quoted_bdt`, `deposit_bdt` and a full `status` enum so this slots in
+without a migration rewrite.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Things that need you, not code
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+These are all one-file edits, flagged with `TODO(niaz)` in the source.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Verify the Bangla spellings** — [src/data/catalog.ts](src/data/catalog.ts).
+   The `bn` names are transliterated from the filenames, not read off the
+   artwork, because ambigram lettering cannot be read back reliably. On a
+   lettering site a wrong matra is worse than a broken link. Please read the
+   17 entries once.
+
+2. **Set the prices** — [src/data/site.ts](src/data/site.ts). `PRICES_PUBLISHED`
+   is `false`, so every price reads "ask for a price" and the site is safe to put
+   live today without committing to a figure. Fill in `fromBdt` and flip the flag.
+
+3. **Real contact handles** — [src/data/site.ts](src/data/site.ts). The
+   WhatsApp number and Messenger link are placeholders and currently point
+   nowhere.
+
+4. **The wallet video shows someone's student ID.** In
+   `resources/For Hero/9536f6c0….mp4`, the card behind the ambigram is a real
+   student ID, and the poster frame reads "ADIB", the degree, and a blood-group
+   field. It is your footage and your call, but it is a third party's data on a
+   commercial page. Re-shooting the three seconds with a blank card would settle
+   it; the pipeline will pick up the replacement automatically.
+
+5. **Check the process page answers** — [src/components/ProcessContent.tsx](src/components/ProcessContent.tsx).
+   Drafted from the requirements document, not from your practice. The deposit
+   rule and the decline policy especially.
+
+---
+
+## Supabase
+
+**Connected.** Project `fuvskunroupgiwccsmye`, both migrations applied, 17
+artworks seeded, RLS verified. Credentials are in `.env.local`, which is
+git-ignored — a fresh clone needs its own copy (see `.env.example`).
+
+Check it at any time:
+
+```bash
+npm run supabase:check
+```
+
+That verifies the key is the publishable one and not a service-role key, reads
+the catalogue back, confirms every row has a matching image, and checks that
+commissions are not publicly readable. Add `-- --insert` to make the RLS check
+decisive: it writes a row and proves it cannot be read back. It leaves a
+`GH-TESTxx` row behind for you to delete.
+
+### Catalogue edits are live within 5 minutes
+
+The catalogue pages carry `revalidate = 300`, so editing a piece in the Supabase
+dashboard — spelling fixes, `featured`, `sort_order`, notes — reaches the site on
+its own, without a deploy. **Adding a brand-new piece still needs a deploy**,
+because its image has to be generated by `npm run assets` and shipped in
+`public/artwork`; `getMedia()` drops any row it has no asset for.
+
+If Supabase is unreachable the site logs a warning and serves the committed
+`src/data/catalog.ts` instead of an empty gallery, so an outage degrades to a
+slightly stale gallery rather than a broken one.
+
+### Setting it up again from scratch
+
+```bash
+cp .env.example .env.local     # then paste your project URL and publishable key
+```
+
+Run the two migrations in [supabase/migrations](supabase/migrations) — either
+`supabase db push`, or paste them into the SQL editor in order:
+
+- `0001_init.sql` — `artworks` and `commissions`, with row-level security.
+  The public can read the catalogue and insert a commission; nobody can read
+  commissions back, because that table holds other people's names and phone
+  numbers and there are no accounts to scope reads to. Read it from the
+  dashboard.
+- `0002_seed_catalog.sql` — generated from `catalog.ts`. Re-runnable, so it is
+  also how you push catalogue edits from the repo to the database.
+
+```bash
+npm run seed:sql     # regenerate 0002 after editing catalog.ts
+```
+
+Then re-run `0002` — it is `on conflict do update`, so it pushes repo edits into
+the existing rows rather than erroring or duplicating.
+
+### MCP
+
+[.mcp.json](.mcp.json) registers Supabase's hosted MCP server against this
+project, so an agent session can query and migrate the database directly.
+Authentication is an interactive OAuth flow: run `claude` in a normal terminal,
+then `/mcp`, then authenticate. The grant includes account access and database
+writes — once the schema settles, consider appending `&read_only=true` to the URL,
+since `commissions` holds real names and phone numbers.
+
+---
+
+## Assets
+
+Nothing binary ships with the site. Source artwork lives in `resources/`,
+untouched; the web renditions live in Supabase Storage; `public/` holds only a
+local build workspace, which is git-ignored.
+
+Two steps. Build the renditions:
+
+```bash
+npm run assets
+```
+
+It handles the things that would otherwise reach a phone unprocessed — a
+4500×4500 CMYK JPEG, a 16000×9000 PNG, two `.jfif` files — by converting to
+sRGB webp at 480/960/1600, re-encoding the 3-second clip from **2.8 MB to
+268 KB** (audio stripped, so the muted loop the requirements ask for is the
+intended experience rather than a degraded one), cutting a poster frame, and
+lifting the roundel out of the corner of `adib-rabita.jpg` to serve as the logo
+and favicon. About 2.1 MB for 19 images and a video.
+
+Then publish it to the cloud:
+
+```bash
+npm run assets:upload
+```
+
+This needs `SUPABASE_SECRET_KEY` in `.env.local` — bucket creation and uploads
+bypass row-level security, so the publishable key cannot do it. The script
+refuses to run if it is given a publishable key by mistake, and the variable is
+deliberately not `NEXT_PUBLIC_` prefixed so it can never reach the browser.
+
+It creates two buckets:
+
+- **`media`** — public. The web renditions, plus the logo and favicon. Object
+  keys carry an 8-character content hash (`adib-rabita-960.1f4c9a20.webp`), so
+  replacing a piece produces a new URL. That is what makes it safe to cache them
+  for a year: a phone on a Bangladeshi mobile connection fetches each rendition
+  once, and a re-upload can never serve a stale one.
+- **`masters`** — private. The untouched originals from `resources/`, as an
+  off-machine archive of the source files.
+
+Afterwards it rewrites every `url` in `src/data/media-manifest.json` to point at
+Storage. **Commit that file** — it is the only record of where the bytes are.
+
+### The manifest is the single source of asset URLs
+
+Nothing in `src/` builds an image path by string concatenation. Components read
+`renditions[].url` through `srcSetFor()` / `defaultSrc()`, which is why moving
+every byte to the cloud touched no component logic beyond the video and the logo.
+The manifest also carries each image's aspect ratio and an inline 16px blur
+placeholder, so layout is stable and something paints before any request — even
+if Storage is slow, the blur is already there in the HTML.
+
+`npm run assets` writes local paths; `npm run assets:upload` replaces them with
+cloud URLs. Both states work, so there is no broken intermediate.
+
+Add a new piece by dropping the file in `resources/`, adding it to
+`scripts/assets.config.mjs` and `src/data/catalog.ts` with the same slug, then
+running `npm run assets && npm run assets:upload`.
+
+### Bandwidth
+
+Supabase's free tier includes 5 GB egress a month. At roughly 400 KB of media per
+page view that is around 12,000 views before it bills — worth watching if a reel
+lands. Serving from the host's CDN instead is the fallback: `npm run assets`
+alone restores local paths, and un-ignoring `public/` would ship them.
+
+---
+
+## Notes on how it is built
+
+**Stack.** Next.js 16 (App Router) · React 19 · Tailwind v4 · Zustand 5 ·
+Supabase · sharp + ffmpeg for the asset pipeline (dev only). Every page
+prerenders static except `/commission`, which reads `?product=` on the server.
+
+**Zustand** holds the language, the gallery filters, the mobile menu, and
+whether the visitor has turned a piece yet (the rotation hint retires itself
+after the first turn). Only the language and that flag persist. Filters live in
+the store because three components read them — the chips, the grid, and the
+count — and they mirror into the query string so a filtered view can be sent to
+someone.
+
+**Colour and type come from the artwork.** Every token in `globals.css` was
+sampled out of the source files: the oxblood is the maroon in the couple pieces,
+the terracotta is the top of the gradient each piece sits on. Type is Tiro Bangla
+for display and Hind Siliguri for UI — both have correct Bengali conjuncts, which
+§5 calls fatal to get wrong.
+
+**No `useSearchParams`.** It opts a statically prerendered page into a Suspense
+boundary that must resolve on the client before anything inside it hydrates. When
+that failed during development, the entire filter UI sat in the DOM looking
+perfectly fine and responding to nothing. The query string is read off
+`window.location` instead, and `/commission` reads it on the server.
+
+**Graceful degradation is load-bearing**, because §4.7 flags the Facebook in-app
+browser as an unreliable environment. Scroll reveals start visible and carry a
+2.5-second failsafe, so a never-firing IntersectionObserver cannot leave the page
+blank. Images default to visible and seed their loaded state from
+`img.complete`, because a server-rendered image usually finishes loading before
+React attaches `onLoad` — relying on that event alone left the hero artwork at
+`opacity: 0`. The video is a facade: poster first, and the clip is only fetched
+when the section is reached, or immediately on tap, and never unasked on a 2G or
+Save-Data connection.
+
+### Verified, and not
+
+Checked in a real browser at 375px and 1280px: no horizontal overflow at either
+width, fonts loading rather than falling back, the hero rotation flipping state
+and swapping the name label, gallery filters and URL sync, the empty-facet chip
+correctly disabled, form validation, and the server action round trip. The
+commission form was then submitted against the live Supabase project and
+returned a real reference, with the row confirmed not readable back through the
+public key.
+
+Not verified: **the Facebook and Instagram in-app browsers**, which §4.1 asks for
+specifically. That needs a phone. Everything animated also needs a real look —
+the preview environment ran no animation frames, so transitions were confirmed by
+their state and inline transforms rather than by eye.

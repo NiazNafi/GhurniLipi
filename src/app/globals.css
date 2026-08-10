@@ -1,26 +1,144 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ---------------------------------------------------------------------------
+   Design tokens
+   Every colour here was sampled out of the artwork in resources/ so the site
+   and the pieces it sells belong to the same palette.
+   --------------------------------------------------------------------------- */
+
+@theme {
+  /* warm near-black — the ink the lettering is drawn in */
+  --color-ink: #17120f;
+  --color-ink-soft: #4a423c;
+  --color-ink-faint: #8b8079;
+
+  /* the maroon second colour in the couple pieces */
+  --color-oxblood: #5a1313;
+  --color-oxblood-soft: #7d2a20;
+
+  /* the warm top of the gradient every piece sits on */
+  --color-terracotta: #c48e5f;
+  --color-terracotta-soft: #ddb894;
+
+  /* paper */
+  --color-paper: #f7f3ea;
+  --color-paper-raised: #fffdf8;
+  --color-bone: #e6ded0;
+
+  /* the cool pale bottom of the artwork gradient */
+  --color-mist: #eef2f3;
+
+  --font-display: var(--font-tiro), "Tiro Bangla", "Noto Serif Bengali",
+    "Nirmala UI", Georgia, serif;
+  --font-body: var(--font-hind), "Hind Siliguri", "Noto Sans Bengali",
+    "Nirmala UI", ui-sans-serif, system-ui, sans-serif;
+
+  --ease-reveal: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* ---------------------------------------------------------------------------
+   Base
+   --------------------------------------------------------------------------- */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    /* Bengali conjuncts need real shaping — never synthesise it */
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Bangla display text sits a touch lower and needs more line room for the
+     matra and the descenders below the baseline. */
+  :lang(bn) {
+    line-height: 1.65;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.005em;
+  }
+
+  ::selection {
+    background-color: var(--color-terracotta-soft);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-oxblood);
+    outline-offset: 3px;
+    border-radius: 2px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ---------------------------------------------------------------------------
+   Utilities
+   --------------------------------------------------------------------------- */
+
+@utility rule-bone {
+  border-color: color-mix(in srgb, var(--color-bone) 80%, transparent);
+}
+
+/* The wash behind hero and section headers, echoing the gradient baked into
+   every piece: warm at the top, cool at the bottom. */
+@utility artwork-wash {
+  background-image: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-terracotta) 22%, transparent) 0%,
+    color-mix(in srgb, var(--color-terracotta) 6%, transparent) 38%,
+    color-mix(in srgb, var(--color-mist) 70%, transparent) 100%
+  );
+}
+
+/* Fine 1px hairline that survives on a cream background */
+@utility hairline {
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-ink) 8%, transparent);
+}
+
+@layer utilities {
+  /* Reveal-on-scroll. Starts visible so that if JS never runs — a real
+     possibility in the Facebook in-app browser — nothing is hidden. */
+  .reveal {
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal[data-reveal="pending"] {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+
+    .reveal[data-reveal="shown"] {
+      opacity: 1;
+      transform: none;
+      transition:
+        opacity 0.7s var(--ease-reveal),
+        transform 0.7s var(--ease-reveal);
+    }
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 }

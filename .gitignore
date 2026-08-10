@@ -39,3 +39,18 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local env
+.env.local
+.env*.local
+
+# Generated media. The bytes live in Supabase Storage (see npm run assets:upload);
+# these are just the local build workspace, rebuildable with `npm run assets`.
+/public/artwork/
+/public/photo/
+/public/media/
+/public/brand/
+/public/icon.png
+
+# ...but the example file documents what is needed and must be committed.
+!.env.example
