@@ -57,21 +57,8 @@ export function SiteFooter() {
           >
             WhatsApp
           </a>
-          <a
-            href={CHANNELS.messenger}
-            className="py-2 text-ink-soft hover:text-oxblood"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Messenger
-          </a>
-          <a
-            href={CHANNELS.instagram}
-            className="py-2 text-ink-soft hover:text-oxblood"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Instagram
+          <a href={CHANNELS.email} className="py-2 text-ink-soft hover:text-oxblood">
+            {t("fieldEmail", lang)}
           </a>
           <a
             href={CHANNELS.facebook}

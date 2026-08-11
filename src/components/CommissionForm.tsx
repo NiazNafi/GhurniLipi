@@ -4,15 +4,18 @@ import { useState, useTransition } from "react";
 
 import { submitCommission } from "@/app/commission/actions";
 import { PRODUCTS, PROMISE, SIZES } from "@/data/site";
-import { CHANNELS, whatsappWithCommission } from "@/lib/channels";
+import { emailWithCommission, whatsappWithCommission } from "@/lib/channels";
 import { commissionMessage } from "@/lib/commission-message";
 import { pick, t, type DictKey } from "@/lib/i18n";
 import type { CommissionInput } from "@/lib/types";
 import { useUiStore } from "@/store/ui";
 
+/**
+ * Messenger is off the list for now — see the note in src/lib/channels.ts. The
+ * stored type still allows it, so rows filed before this change keep reading.
+ */
 const CHANNEL_OPTIONS = [
   { value: "whatsapp", labelKey: "channelWhatsapp" as DictKey },
-  { value: "messenger", labelKey: "channelMessenger" as DictKey },
   { value: "phone", labelKey: "channelPhone" as DictKey },
   { value: "email", labelKey: "channelEmail" as DictKey },
 ] as const;
@@ -116,16 +119,15 @@ export function CommissionForm({
   if (reference) {
     /**
      * What the buyer sees depends on the channel they picked, because the
-     * channels are not equivalent. Phone and email need nothing further from
-     * them. WhatsApp is worth opening now, prefilled. Messenger *requires*
-     * them to write first — a Page cannot start that conversation — so there
-     * the button is the whole point rather than a shortcut.
+     * channels are not equivalent. A phone call needs nothing further from
+     * them. WhatsApp and email both carry the whole request, so each gets a
+     * button that opens it already written — the reply comes either way, but
+     * a buyer who starts the thread now gets answered in it.
      */
     const channel = form.preferredChannel;
     const nextKey = (
       {
         whatsapp: "nextWhatsapp",
-        messenger: "nextMessenger",
         phone: "nextPhone",
         email: "nextEmail",
       } as const
@@ -139,8 +141,11 @@ export function CommissionForm({
             href: whatsappWithCommission(form, reference, lang),
             label: t("openWhatsapp", lang),
           }
-        : channel === "messenger"
-          ? { href: CHANNELS.messenger, label: t("openMessenger", lang) }
+        : channel === "email"
+          ? {
+              href: emailWithCommission(form, reference, lang),
+              label: t("openEmail", lang),
+            }
           : null;
 
     return (
@@ -156,8 +161,8 @@ export function CommissionForm({
           {reference}
         </p>
 
-        {/* Messenger cannot carry a prefilled message, so make the code easy
-            to take across rather than asking anyone to retype it. */}
+        {/* Whichever channel they chose, the whole request stays one tap from
+            the clipboard rather than something anyone has to retype. */}
         <button
           type="button"
           onClick={() => {

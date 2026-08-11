@@ -47,8 +47,11 @@ export interface CommissionInput {
   contactName: string;
   phone: string;
   email: string;
-  /** Where they would rather be reached — most BD buyers pick a chat app. */
-  preferredChannel: "whatsapp" | "messenger" | "phone" | "email";
+  /**
+   * Where they would rather be reached — most BD buyers pick a chat app.
+   * Messenger is out of the offered set for now; older rows may still hold it.
+   */
+  preferredChannel: "whatsapp" | "phone" | "email";
 }
 
 export type CommissionResult =

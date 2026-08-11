@@ -160,7 +160,6 @@ export const DICT = {
   fieldEmailOptional: { bn: "ইচ্ছা হলে", en: "Optional" },
   fieldChannel: { bn: "কোথায় কথা বলবেন?", en: "Where should I reply?" },
   channelWhatsapp: { bn: "হোয়াটসঅ্যাপ", en: "WhatsApp" },
-  channelMessenger: { bn: "মেসেঞ্জার", en: "Messenger" },
   channelPhone: { bn: "ফোন", en: "Phone call" },
   channelEmail: { bn: "ইমেইল", en: "Email" },
   submit: { bn: "পাঠিয়ে দিন", en: "Send the request" },
@@ -175,20 +174,16 @@ export const DICT = {
     bn: "হোয়াটসঅ্যাপে উত্তর দেব। চাইলে এখনই কথা শুরু করে রাখতে পারেন — রেফারেন্সটি লেখা থাকবে।",
     en: "I will reply on WhatsApp. You can open the thread now if you like — the reference will already be written in.",
   },
-  nextMessenger: {
-    bn: "মেসেঞ্জারে উত্তর দিতে হলে আগে আপনাকে একটি বার্তা পাঠাতে হবে — ফর্ম থেকে আপনার মেসেঞ্জার আইডি পাই না। নিচের বোতামে চাপ দিন, সব তথ্য কপি করা আছে।",
-    en: "For Messenger you have to write first — the form gives me your phone, not your Messenger. Tap below, and paste the request in; it is already copied.",
-  },
   nextPhone: {
     bn: "আপনার দেওয়া নম্বরে ফোন করব। আর কিছু করতে হবে না।",
     en: "I will call the number you gave. Nothing further needed from you.",
   },
   nextEmail: {
-    bn: "আপনার ইমেইলে উত্তর পাঠাব। আর কিছু করতে হবে না।",
-    en: "I will reply to your email address. Nothing further needed from you.",
+    bn: "আপনার ইমেইলে উত্তর পাঠাব। চাইলে এখনই মেইলটি পাঠিয়ে রাখতে পারেন — সব তথ্য আর রেফারেন্স লেখাই আছে।",
+    en: "I will reply to the address you gave. You can send the mail now if you like — the request and the reference are already written in.",
   },
-  openMessenger: { bn: "মেসেঞ্জারে পাঠান", en: "Send it on Messenger" },
   openWhatsapp: { bn: "হোয়াটসঅ্যাপে পাঠান", en: "Send it on WhatsApp" },
+  openEmail: { bn: "ইমেইলে পাঠান", en: "Send it by email" },
   copyReference: { bn: "সব তথ্য কপি করুন", en: "Copy the whole request" },
   copiedReference: { bn: "কপি হয়েছে", en: "Copied" },
   /** Heading of the message a buyer sends over WhatsApp or pastes into chat. */
@@ -211,8 +206,8 @@ export const DICT = {
   submitAnother: { bn: "আরেকটি পাঠান", en: "Send another" },
   orChat: { bn: "অথবা সরাসরি কথা বলুন", en: "Or just message me" },
   chatBlurb: {
-    bn: "ফর্ম ভরতে ইচ্ছে না করলে মেসেঞ্জার বা হোয়াটসঅ্যাপে লিখে ফেলুন — একই কাজ হবে।",
-    en: "If a form is not how you would rather do this, message me instead. It works just as well.",
+    bn: "ফর্ম ভরতে ইচ্ছে না করলে হোয়াটসঅ্যাপে বা ইমেইলে লিখে ফেলুন — একই কাজ হবে।",
+    en: "If a form is not how you would rather do this, write to me on WhatsApp or by email instead. It works just as well.",
   },
   required: { bn: "লাগবে", en: "Required" },
   errNameOne: { bn: "প্রথম নামটি লিখুন", en: "Please give the first name" },
@@ -222,12 +217,12 @@ export const DICT = {
   },
   errContactName: { bn: "আপনার নাম লিখুন", en: "Please tell me your name" },
   errGeneric: {
-    bn: "পাঠানো গেল না। একবার আবার চেষ্টা করুন, বা মেসেঞ্জারে লিখুন।",
-    en: "That did not send. Try once more, or message me instead.",
+    bn: "পাঠানো গেল না। একবার আবার চেষ্টা করুন, বা হোয়াটসঅ্যাপে লিখুন।",
+    en: "That did not send. Try once more, or message me on WhatsApp instead.",
   },
   errNotConfigured: {
-    bn: "সাইটের ডেটাবেস এখনো যুক্ত হয়নি। এখন মেসেঞ্জার বা হোয়াটসঅ্যাপে লিখুন।",
-    en: "The site database is not connected yet. Please message me on WhatsApp or Messenger for now.",
+    bn: "সাইটের ডেটাবেস এখনো যুক্ত হয়নি। এখন হোয়াটসঅ্যাপে বা ইমেইলে লিখুন।",
+    en: "The site database is not connected yet. Please write to me on WhatsApp or by email for now.",
   },
 
   // ── process / FAQ ───────────────────────────────────────────────────────

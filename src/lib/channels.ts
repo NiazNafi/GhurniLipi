@@ -6,12 +6,15 @@ import type { CommissionInput, Lang } from "@/lib/types";
  * The contact channels, in one place.
  *
  * `preferredChannel` on a commission means *where Niaz replies*, not where the
- * buyer writes. That distinction drives everything below: for phone and email
- * the buyer has already handed over what is needed and should be told to expect
- * a reply, whereas WhatsApp and Messenger are worth opening a thread on now.
+ * buyer writes. Two of them can carry the request across on the spot — WhatsApp
+ * in a deep link, email in a mailto — so those buyers are handed a ready
+ * message rather than a bare code. Phone needs nothing further from them.
+ *
+ * Messenger and Instagram are dark for now: the handles resolve, but nothing in
+ * the UI links to them. Messenger was the awkward one anyway — the form
+ * collects a phone, not a Messenger identity, and a Page cannot open the
+ * conversation itself, so the buyer had to write first.
  */
-
-export type Channel = "whatsapp" | "messenger" | "phone" | "email";
 
 const digits = (value: string) => value.replace(/\D/g, "");
 
@@ -26,9 +29,9 @@ export const CHANNELS = {
 } as const;
 
 /**
- * WhatsApp is the one channel that accepts a prefilled message, so the buyer
- * arrives with the entire request already written rather than a bare code that
- * means nothing until someone opens the dashboard.
+ * WhatsApp accepts a prefilled message, so the buyer arrives with the entire
+ * request already written rather than a bare code that means nothing until
+ * someone opens the dashboard.
  */
 export function whatsappWithCommission(
   input: CommissionInput,
@@ -39,6 +42,7 @@ export function whatsappWithCommission(
   return `${CHANNELS.whatsapp}?text=${encodeURIComponent(text)}`;
 }
 
+/** The same, by mail: subject carries the reference, body carries the request. */
 export function emailWithCommission(
   input: CommissionInput,
   reference: string,
@@ -50,27 +54,24 @@ export function emailWithCommission(
   return `${CHANNELS.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
-/**
- * Whether the buyer needs to do anything after submitting.
- *
- * Messenger is the awkward one: the form collects a phone number, not a
- * Messenger identity, so a buyer who asks to be answered there is unreachable
- * until they write. That button is the difference between a lead and a dead
- * end, not a convenience. (It is doubly true for a Page, which cannot open a
- * conversation at all — see the note on facebookPage in src/data/site.ts.)
- */
-export function channelNeedsBuyerToOpenThread(channel: Channel): boolean {
-  return channel === "messenger";
-}
-
 /** True once every placeholder in src/data/site.ts has been replaced. */
 export function channelsConfigured(): boolean {
   return unconfiguredChannels().length === 0;
 }
 
-/** Names of the fields still holding their shipped placeholder value. */
+/**
+ * Names of the fields still holding their shipped placeholder value.
+ *
+ * Compared as plain strings: both sides are `as const`, so once every handle is
+ * real the literal types no longer overlap and TypeScript calls the comparison
+ * a mistake — which would make the check fail to compile exactly when it is
+ * passing. The runtime check is the point; it has to survive a future edit that
+ * puts a placeholder back.
+ */
 export function unconfiguredChannels(): string[] {
   return (
     Object.keys(CHANNEL_PLACEHOLDERS) as (keyof typeof CHANNEL_PLACEHOLDERS)[]
-  ).filter((key) => SITE[key] === CHANNEL_PLACEHOLDERS[key]);
+  ).filter(
+    (key) => (SITE[key] as string) === (CHANNEL_PLACEHOLDERS[key] as string),
+  );
 }

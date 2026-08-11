@@ -7,11 +7,11 @@ import { t } from "@/lib/i18n";
 import { useUiStore } from "@/store/ui";
 
 /**
- * Closing call to action, with the chat paths given equal billing.
+ * Closing call to action, with the direct paths given equal billing.
  *
- * A large share of small-brand commerce in Bangladesh happens inside Messenger
- * rather than on a website (requirements §4.7), so insisting on the form here
- * would quietly cost orders.
+ * A large share of small-brand commerce in Bangladesh happens in chat rather
+ * than on a website (requirements §4.7), so insisting on the form here would
+ * quietly cost orders.
  */
 export function CtaBand() {
   const lang = useUiStore((s) => s.lang);
@@ -48,12 +48,10 @@ export function CtaBand() {
             WhatsApp
           </a>
           <a
-            href={CHANNELS.messenger}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={CHANNELS.email}
             className="rounded-full border border-ink/20 px-7 py-3.5 text-sm text-ink transition-colors hover:border-ink/50"
           >
-            Messenger
+            {t("fieldEmail", lang)}
           </a>
         </div>
 

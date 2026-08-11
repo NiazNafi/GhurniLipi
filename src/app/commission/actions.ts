@@ -3,7 +3,7 @@
 import { getSupabase, isSupabaseConfigured } from "@/lib/supabase";
 import type { CommissionInput, CommissionResult } from "@/lib/types";
 
-/** GH-7QK4M2 — short enough to read out over Messenger. */
+/** GH-7QK4M2 — short enough to read out over the phone. */
 function makeReference(): string {
   const alphabet = "ACDEFGHJKLMNPQRTUVWXY34679";
   let body = "";
@@ -51,9 +51,11 @@ export async function submitCommission(
     contact_name: clean(input.contactName, MAX.name),
     phone: clean(input.phone, MAX.short),
     email: clean(input.email, MAX.short),
-    preferred_channel: (
-      ["whatsapp", "messenger", "phone", "email"] as const
-    ).includes(input.preferredChannel as "whatsapp")
+    // Messenger is no longer offered; anything else falls back to WhatsApp
+    // rather than storing a channel the reply flow does not cover.
+    preferred_channel: (["whatsapp", "phone", "email"] as const).includes(
+      input.preferredChannel as "whatsapp",
+    )
       ? input.preferredChannel
       : "whatsapp",
   };

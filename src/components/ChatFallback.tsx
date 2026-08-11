@@ -7,9 +7,9 @@ import { useUiStore } from "@/store/ui";
 /**
  * The escape hatch from the form.
  *
- * Requirements §4.7: a large share of small-brand commerce here happens inside
- * Messenger, and people who expect to chat will abandon a form rather than fill
- * it in. This is given real estate on purpose, not tucked into the footer.
+ * Requirements §4.7: a large share of small-brand commerce here happens in
+ * chat, and people who expect to chat will abandon a form rather than fill it
+ * in. This is given real estate on purpose, not tucked into the footer.
  */
 export function ChatFallback() {
   const lang = useUiStore((s) => s.lang);
@@ -32,12 +32,10 @@ export function ChatFallback() {
           WhatsApp
         </a>
         <a
-          href={CHANNELS.messenger}
-          target="_blank"
-          rel="noopener noreferrer"
+          href={CHANNELS.email}
           className="rounded-full border border-ink/20 px-6 py-3 text-sm text-ink transition-colors hover:border-ink/50"
         >
-          Messenger
+          {t("fieldEmail", lang)}
         </a>
       </div>
     </section>

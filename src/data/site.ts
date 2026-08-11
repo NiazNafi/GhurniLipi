@@ -55,8 +55,12 @@ export const SITE = {
    * line the same day you rename, not after.
    */
   instagram: "symmetry_talks",
-  /** Where commission mail is read. Shown to buyers who choose email. */
-  email: "hello@ghurnilipi.com",
+  /**
+   * Where commission mail is read. Buyers who choose email get a mailto with
+   * the whole request already written, addressed here — so this has to be an
+   * inbox that is actually watched, not a forwarding address set up later.
+   */
+  email: "niaznafirahman@gmail.com",
 } as const;
 
 /**
