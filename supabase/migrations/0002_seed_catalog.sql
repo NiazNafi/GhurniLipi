@@ -10,6 +10,7 @@ insert into public.artworks
   (id, kind, script, reads, featured, sort_order, note_bn, note_en)
 values
   ('adib-rabita', 'couple', 'bangla', '[{"bn":"আদিব","en":"Adib"},{"bn":"রাবিতা","en":"Rabita"}]'::jsonb, true, 10, 'দুই প্রান্তে দুটি পাক — নকশাটি নিজেই ১৮০° ঘুরে নিজের সঙ্গে মেলে।', 'Twin spirals at opposite corners — the composition is itself symmetrical under a half turn.'),
+  ('mayeesha-aaman', 'couple', 'bangla', '[{"bn":"মায়ীশা","en":"Mayeesha"},{"bn":"আমান","en":"Aaman"}]'::jsonb, true, 15, 'হোম পেজের ফ্রেম-জোড়ার ছবিটি ঠিক এই লেখাটিরই।', 'The framed-pair photograph on the home page is this very piece — the drawing and the object it becomes.'),
   ('saiara-akif', 'couple', 'bangla', '[{"bn":"সাইয়ারা","en":"Saiara"},{"bn":"আকিফ","en":"Akif"}]'::jsonb, true, 20, NULL, NULL),
   ('tahsina-soyeb', 'couple', 'bangla', '[{"bn":"তাহসিনা","en":"Tahsina"},{"bn":"সোয়েব","en":"Soyeb"}]'::jsonb, true, 30, NULL, NULL),
   ('shourov-taniya', 'couple', 'bangla', '[{"bn":"সৌরভ","en":"Shourov"},{"bn":"তানিয়া","en":"Taniya"}]'::jsonb, false, 40, NULL, NULL),

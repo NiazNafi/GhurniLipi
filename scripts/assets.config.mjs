@@ -21,6 +21,8 @@ export const PHOTOS = [
 export const ARTWORKS = [
   // Couple's name ambigrams
   { slug: "adib-rabita", src: "Couple Ambigrams/adib-rabita.jpg" },
+  // The framed-pair photograph in the hero is this same piece.
+  { slug: "mayeesha-aaman", src: "Couple Ambigrams/mayeesha_aaman.jpg" },
   { slug: "saiara-akif", src: "Couple Ambigrams/saiara-akif.jpg" },
   { slug: "shourov-taniya", src: "Couple Ambigrams/shourov-taniya.jpg" },
   { slug: "tahsina-soyeb", src: "Couple Ambigrams/tahsina-soyeb.jpg" },

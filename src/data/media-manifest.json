@@ -30,6 +30,30 @@
       "aspect": 1,
       "blurDataURL": "data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAACwAQCdASoQABAAAwBSJQBOgCHUZexgAP7F/eXoLEkiLBAja12tEcnYouLUIeom9mmjENshfrUw2VsXMZeHpfCVJiqJxL/haOAAAA=="
     },
+    "mayeesha-aaman": {
+      "slug": "mayeesha-aaman",
+      "renditions": [
+        {
+          "width": 480,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/mayeesha-aaman-480.7194af30.webp",
+          "file": "artwork/mayeesha-aaman-480.webp"
+        },
+        {
+          "width": 960,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/mayeesha-aaman-960.c4fa5428.webp",
+          "file": "artwork/mayeesha-aaman-960.webp"
+        },
+        {
+          "width": 1600,
+          "url": "https://fuvskunroupgiwccsmye.supabase.co/storage/v1/object/public/media/artwork/mayeesha-aaman-1600.1ddb0af2.webp",
+          "file": "artwork/mayeesha-aaman-1600.webp"
+        }
+      ],
+      "width": 1080,
+      "height": 1080,
+      "aspect": 1,
+      "blurDataURL": "data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAADwAQCdASoQABAAAwBSJQBOgCHN1EX1CwAA/sdxJW2SoOEu7b+NNuoMEg9zlIU6E8u/TzMHNZ6edhTkF8azgsyEHSGqV8AAAAA="
+    },
     "saiara-akif": {
       "slug": "saiara-akif",
       "renditions": [

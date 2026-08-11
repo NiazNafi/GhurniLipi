@@ -33,6 +33,21 @@ export const CATALOG: Artwork[] = [
     },
   },
   {
+    id: "mayeesha-aaman",
+    kind: "couple",
+    script: "bangla",
+    reads: [
+      { bn: "মায়ীশা", en: "Mayeesha" },
+      { bn: "আমান", en: "Aaman" },
+    ],
+    featured: true,
+    order: 15,
+    note: {
+      bn: "হোম পেজের ফ্রেম-জোড়ার ছবিটি ঠিক এই লেখাটিরই।",
+      en: "The framed-pair photograph on the home page is this very piece — the drawing and the object it becomes.",
+    },
+  },
+  {
     id: "saiara-akif",
     kind: "couple",
     script: "bangla",
