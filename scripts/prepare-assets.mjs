@@ -71,10 +71,21 @@ async function blurPlaceholder(input) {
  * Emits one webp per width, skipping widths that would upscale.
  * Returns the manifest entry.
  */
-async function processImage({ slug, src }, outDir, urlPrefix, opts = {}) {
+async function processImage({ slug, src, crop }, outDir, urlPrefix, opts = {}) {
   const input = path.join(RESOURCES, src);
-  const pipeline = sharp(input, LIMIT).withMetadata({ density: undefined });
-  const meta = await pipeline.metadata();
+  const sourceMeta = await sharp(input, LIMIT).metadata();
+
+  // Everything downstream — widths, aspect ratio, blur placeholder — has to be
+  // measured on the cropped image, not the original, or the manifest describes
+  // a picture the site never shows.
+  const meta = crop
+    ? { ...sourceMeta, width: crop.width, height: crop.height }
+    : sourceMeta;
+
+  const prepared = () => {
+    const s = sharp(input, LIMIT).toColourspace("srgb");
+    return crop ? s.extract(crop) : s;
+  };
 
   const widths = (opts.widths ?? IMAGE_WIDTHS).filter(
     (w, i, arr) => w <= meta.width || i === 0 || arr[i - 1] < meta.width,
@@ -83,9 +94,8 @@ async function processImage({ slug, src }, outDir, urlPrefix, opts = {}) {
   const emitted = [];
   for (const width of widths) {
     const outPath = path.join(outDir, `${slug}-${width}.webp`);
-    await sharp(input, LIMIT)
+    await prepared()
       // toColourspace srgb handles the CMYK sources correctly
-      .toColourspace("srgb")
       .resize({ width, withoutEnlargement: true })
       .webp({ quality: opts.quality ?? 82, effort: 5 })
       .toFile(outPath);
@@ -94,7 +104,7 @@ async function processImage({ slug, src }, outDir, urlPrefix, opts = {}) {
 
   const largest = emitted.at(-1);
   console.log(
-    `  ${slug.padEnd(22)} ${meta.width}x${meta.height} ${String(meta.space).padEnd(5)} -> ${emitted.length} webp, largest ${kb(largest.bytes)}`,
+    `  ${slug.padEnd(22)} ${meta.width}x${meta.height}${crop ? " cropped" : ""} ${String(meta.space).padEnd(5)} -> ${emitted.length} webp, largest ${kb(largest.bytes)}`,
   );
 
   return {
@@ -113,7 +123,11 @@ async function processImage({ slug, src }, outDir, urlPrefix, opts = {}) {
     width: meta.width,
     height: meta.height,
     aspect: +(meta.width / meta.height).toFixed(4),
-    blurDataURL: await blurPlaceholder(input),
+    // From the cropped image too — a placeholder of the wider original would
+    // blur in the wrong colours and then jump when the real picture arrives.
+    blurDataURL: await blurPlaceholder(
+      await prepared().webp({ quality: 90 }).toBuffer(),
+    ),
   };
 }
 

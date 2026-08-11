@@ -49,7 +49,7 @@ export function Hero({ artwork, media, framedPhoto }: Props) {
           so their children can be ordered individually on mobile, then behave
           as normal columns again on desktop.
         */}
-        <div className="flex flex-col gap-y-6 lg:grid lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-center lg:gap-10 lg:gap-x-14">
+        <div className="flex flex-col gap-y-6 lg:grid lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] lg:items-center lg:gap-10 lg:gap-x-12">
           {/* ── words ── */}
           <div className="contents lg:block">
             <p className="order-1 text-[11px] tracking-[0.22em] text-oxblood uppercase lg:order-none">
@@ -57,7 +57,7 @@ export function Hero({ artwork, media, framedPhoto }: Props) {
             </p>
 
             <h1
-              className="order-2 -mt-2 font-display text-[2.4rem] leading-[var(--leading-bangla)] text-ink sm:text-6xl lg:order-none lg:mt-4 lg:text-[4.1rem]"
+              className="order-2 -mt-2 font-display text-[2.4rem] leading-[var(--leading-bangla)] text-ink sm:text-6xl lg:order-none lg:mt-4 lg:text-[3.5rem]"
               lang={lang}
             >
               {t("heroTitle", lang)
@@ -105,15 +105,21 @@ export function Hero({ artwork, media, framedPhoto }: Props) {
             </div>
           </div>
 
-          {/* ── the piece, and the object ── */}
-          <div className="contents lg:grid lg:grid-cols-[minmax(0,1.45fr)_minmax(0,0.85fr)] lg:items-start lg:gap-4">
+          {/*
+            ── the piece, and the object ──
+            Equal widths from lg up. The photograph is the only place the thing
+            being sold appears as a physical object you could hand to someone,
+            so giving it a third of the space was the wrong trade — even though
+            the drawing beside it is the hook.
+          */}
+          <div className="contents lg:grid lg:grid-cols-2 lg:items-center lg:gap-4">
             <div className="order-3 lg:order-none">
               <RotatingAmbigram
                 artwork={artwork}
                 media={media}
                 priority
                 autoDemo
-                sizes="(min-width: 1024px) 380px, (min-width: 640px) 55vw, 92vw"
+                sizes="(min-width: 1024px) 350px, (min-width: 640px) 55vw, 92vw"
               />
             </div>
 
@@ -125,7 +131,7 @@ export function Hero({ artwork, media, framedPhoto }: Props) {
                 <ArtworkImage
                   media={framedPhoto}
                   alt={t("heroFramedCaption", lang)}
-                  sizes="(min-width: 1024px) 230px, (min-width: 640px) 32vw, 92vw"
+                  sizes="(min-width: 1024px) 350px, (min-width: 640px) 45vw, 92vw"
                 />
               </div>
               <figcaption

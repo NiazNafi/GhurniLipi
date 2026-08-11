@@ -5,11 +5,22 @@
 
 export const IMAGE_WIDTHS = [480, 960, 1600];
 
-/** Photographs — lifestyle/product shots. Kept as photo/* output. */
+/**
+ * Photographs — lifestyle/product shots. Kept as photo/* output.
+ *
+ * `crop` is an optional sharp extract region applied before resizing. The
+ * daylight shot is framed as a wide bedside scene, so at the size the hero
+ * gives it the two frames came out barely an inch across and the lettering
+ * inside them was unreadable — which defeats the point, since that photograph
+ * is the only place the signature product appears as a physical object.
+ * Cropping to the frames makes it a product shot rather than a room shot.
+ * The untouched original still goes to the private `masters` bucket.
+ */
 export const PHOTOS = [
   {
     slug: "framed-pair-daylight",
     src: "For Hero/mayeesha_aman.jfif",
+    crop: { left: 491, top: 790, width: 1352, height: 831 },
   },
   {
     slug: "framed-pair-lowlight",
