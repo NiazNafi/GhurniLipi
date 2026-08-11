@@ -176,8 +176,8 @@ export const DICT = {
     en: "I will reply on WhatsApp. You can open the thread now if you like — the reference will already be written in.",
   },
   nextMessenger: {
-    bn: "মেসেঞ্জারে উত্তর দিতে হলে আগে আপনাকে একটি বার্তা পাঠাতে হবে — ফেসবুক পেজ থেকে আগে কথা শুরু করা যায় না। নিচের বোতামে চাপ দিয়ে রেফারেন্সটি পাঠিয়ে দিন।",
-    en: "For Messenger you have to write first — a Facebook Page cannot start a conversation. Tap below and send me the reference, and I will pick it up from there.",
+    bn: "মেসেঞ্জারে উত্তর দিতে হলে আগে আপনাকে একটি বার্তা পাঠাতে হবে — ফর্ম থেকে আপনার মেসেঞ্জার আইডি পাই না। নিচের বোতামে চাপ দিন, সব তথ্য কপি করা আছে।",
+    en: "For Messenger you have to write first — the form gives me your phone, not your Messenger. Tap below, and paste the request in; it is already copied.",
   },
   nextPhone: {
     bn: "আপনার দেওয়া নম্বরে ফোন করব। আর কিছু করতে হবে না।",

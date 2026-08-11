@@ -53,10 +53,11 @@ export function emailWithCommission(
 /**
  * Whether the buyer needs to do anything after submitting.
  *
- * Messenger is the awkward one: a Facebook Page cannot open a conversation
- * with someone who has not messaged it first. So a buyer who picks Messenger
- * is unreachable until they send something — which makes that button the
- * difference between a lead and a dead end, not a convenience.
+ * Messenger is the awkward one: the form collects a phone number, not a
+ * Messenger identity, so a buyer who asks to be answered there is unreachable
+ * until they write. That button is the difference between a lead and a dead
+ * end, not a convenience. (It is doubly true for a Page, which cannot open a
+ * conversation at all — see the note on facebookPage in src/data/site.ts.)
  */
 export function channelNeedsBuyerToOpenThread(channel: Channel): boolean {
   return channel === "messenger";

@@ -36,10 +36,25 @@ export const SITE = {
    * shared via url is invalid" page rather than a chat.
    */
   whatsapp: "8801745984130",
-  /** The page's username or numeric id, not a full URL. e.g. ghurnilipi */
-  facebookPage: "ghurnilipi",
-  /** Handle without the @. */
-  instagram: "ghurnilipi",
+  /**
+   * Facebook username — a Page's or a profile's, not a full URL. Drives both
+   * the Messenger deep link and the Facebook link in the footer.
+   *
+   * Currently a personal profile. That works, but a stranger messaging a
+   * personal profile lands in Message Requests, which is a folder most people
+   * never open — so orders can arrive and sit unseen. A Page delivers to the
+   * normal inbox, and requirements §4.7 wants one anyway.
+   */
+  facebookPage: "Niaznafirahman",
+  /**
+   * Handle without the @.
+   *
+   * TODO(niaz): this changes when the account is renamed to @ghurnilipi
+   * (requirements §1). Instagram does not redirect an old handle — the link
+   * simply breaks, and the freed name can be claimed by anyone. Update this
+   * line the same day you rename, not after.
+   */
+  instagram: "symmetry_talks",
   /** Where commission mail is read. Shown to buyers who choose email. */
   email: "hello@ghurnilipi.com",
 } as const;
