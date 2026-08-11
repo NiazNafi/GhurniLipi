@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-import { SITE } from "@/data/site";
+import { CHANNELS } from "@/lib/channels";
 import { t } from "@/lib/i18n";
 import { useUiStore } from "@/store/ui";
 
@@ -40,7 +40,7 @@ export function CtaBand() {
             {t("heroCta", lang)}
           </Link>
           <a
-            href={`https://wa.me/${SITE.whatsapp}`}
+            href={CHANNELS.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-full border border-ink/20 px-7 py-3.5 text-sm text-ink transition-colors hover:border-ink/50"
@@ -48,7 +48,7 @@ export function CtaBand() {
             WhatsApp
           </a>
           <a
-            href={SITE.messenger}
+            href={CHANNELS.messenger}
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-full border border-ink/20 px-7 py-3.5 text-sm text-ink transition-colors hover:border-ink/50"

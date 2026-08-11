@@ -13,16 +13,46 @@ export const SITE = {
   } satisfies Bilingual,
   /** Update once the domain is registered — used for canonical + OG URLs. */
   url: "https://ghurnilipi.com",
-  instagram: "https://instagram.com/ghurnilipi",
 
   /**
-   * TODO(niaz): replace with the real handles before launch. Facebook and
-   * WhatsApp matter more than the form here — requirements §4.7.
+   * ┌───────────────────────────────────────────────────────────────────────┐
+   * │ CONTACT CHANNELS — every value below is still a placeholder.          │
+   * │                                                                       │
+   * │ These are not decoration. Requirements §4.7: for a Bangladesh         │
+   * │ audience a large share of small-brand commerce happens inside         │
+   * │ Messenger, and the chat buttons carry as much weight as the form.     │
+   * │ Right now every one of them leads nowhere.                            │
+   * │                                                                       │
+   * │ `npm run supabase:check` fails while any placeholder survives, so     │
+   * │ this cannot quietly reach production.                                 │
+   * └───────────────────────────────────────────────────────────────────────┘
    */
-  facebookPage: "https://facebook.com/ghurnilipi",
-  messenger: "https://m.me/ghurnilipi",
-  /** International format, no +, no spaces. */
+
+  /**
+   * Digits only — no +, no spaces, no dashes, and NO leading zero.
+   *
+   * Local 01745984130 becomes 8801745984130: drop the 0, prepend the country
+   * code. wa.me rejects the local form silently, opening a "phone number
+   * shared via url is invalid" page rather than a chat.
+   */
+  whatsapp: "8801745984130",
+  /** The page's username or numeric id, not a full URL. e.g. ghurnilipi */
+  facebookPage: "ghurnilipi",
+  /** Handle without the @. */
+  instagram: "ghurnilipi",
+  /** Where commission mail is read. Shown to buyers who choose email. */
+  email: "hello@ghurnilipi.com",
+} as const;
+
+/**
+ * The values above as they ship in this file. Anything still matching is
+ * unconfigured — see channelsConfigured() in src/lib/channels.ts.
+ */
+export const CHANNEL_PLACEHOLDERS = {
   whatsapp: "8801700000000",
+  facebookPage: "ghurnilipi",
+  instagram: "ghurnilipi",
+  email: "hello@ghurnilipi.com",
 } as const;
 
 /**
@@ -100,6 +130,19 @@ export const PRODUCTS: ProductTier[] = [
     fromBdt: 0,
     physical: true,
   },
+];
+
+/**
+ * Sizes offered in the intake form. Lives here rather than inside the form
+ * because the commission summary sent over WhatsApp has to render the same
+ * label — a message reading `size: 5x7` puts the raw form value in front of a
+ * customer.
+ */
+export const SIZES: { value: string; label: Bilingual }[] = [
+  { value: "wallet", label: { bn: "মানিব্যাগ কার্ড", en: "Wallet card" } },
+  { value: "5x7", label: { bn: '৫" × ৭"', en: '5" × 7"' } },
+  { value: "8x10", label: { bn: '৮" × ১০"', en: '8" × 10"' } },
+  { value: "a4", label: { bn: "এ-৪", en: "A4" } },
 ];
 
 /** TODO(niaz): requirements §7 question 4 — confirm before launch. */

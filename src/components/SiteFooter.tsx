@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import { SITE } from "@/data/site";
 import { BRAND_MARK, defaultSrc } from "@/lib/artworks";
+import { CHANNELS } from "@/lib/channels";
 import { t } from "@/lib/i18n";
 import { useUiStore } from "@/store/ui";
 
@@ -49,7 +50,7 @@ export function SiteFooter() {
 
         <div className="flex flex-col gap-0.5 text-sm">
           <a
-            href={`https://wa.me/${SITE.whatsapp}`}
+            href={CHANNELS.whatsapp}
             className="py-2 text-ink-soft hover:text-oxblood"
             target="_blank"
             rel="noopener noreferrer"
@@ -57,7 +58,7 @@ export function SiteFooter() {
             WhatsApp
           </a>
           <a
-            href={SITE.messenger}
+            href={CHANNELS.messenger}
             className="py-2 text-ink-soft hover:text-oxblood"
             target="_blank"
             rel="noopener noreferrer"
@@ -65,7 +66,7 @@ export function SiteFooter() {
             Messenger
           </a>
           <a
-            href={SITE.instagram}
+            href={CHANNELS.instagram}
             className="py-2 text-ink-soft hover:text-oxblood"
             target="_blank"
             rel="noopener noreferrer"
@@ -73,7 +74,7 @@ export function SiteFooter() {
             Instagram
           </a>
           <a
-            href={SITE.facebookPage}
+            href={CHANNELS.facebook}
             className="py-2 text-ink-soft hover:text-oxblood"
             target="_blank"
             rel="noopener noreferrer"

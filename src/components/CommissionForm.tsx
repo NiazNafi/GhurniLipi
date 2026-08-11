@@ -3,20 +3,14 @@
 import { useState, useTransition } from "react";
 
 import { submitCommission } from "@/app/commission/actions";
-import { PRODUCTS, PROMISE, SITE } from "@/data/site";
+import { PRODUCTS, PROMISE, SIZES } from "@/data/site";
+import { CHANNELS, whatsappWithCommission } from "@/lib/channels";
+import { commissionMessage } from "@/lib/commission-message";
 import { pick, t, type DictKey } from "@/lib/i18n";
 import type { CommissionInput } from "@/lib/types";
 import { useUiStore } from "@/store/ui";
 
-const SIZES = [
-  { value: "", labelKey: "sizeUnsure" as DictKey },
-  { value: "wallet", labelKey: "fieldSize" as DictKey, literal: "Wallet card" },
-  { value: "5x7", labelKey: "fieldSize" as DictKey, literal: '5" × 7"' },
-  { value: "8x10", labelKey: "fieldSize" as DictKey, literal: '8" × 10"' },
-  { value: "a4", labelKey: "fieldSize" as DictKey, literal: "A4" },
-];
-
-const CHANNELS = [
+const CHANNEL_OPTIONS = [
   { value: "whatsapp", labelKey: "channelWhatsapp" as DictKey },
   { value: "messenger", labelKey: "channelMessenger" as DictKey },
   { value: "phone", labelKey: "channelPhone" as DictKey },
@@ -69,6 +63,7 @@ export function CommissionForm({
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [formError, setFormError] = useState<string | null>(null);
   const [reference, setReference] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
   const [pending, startTransition] = useTransition();
 
   function set<K extends keyof CommissionInput>(
@@ -92,6 +87,11 @@ export function CommissionForm({
     }
     if (form.phone.replace(/\D/g, "").length < 6) next.phone = "errPhone";
     if (!form.contactName.trim()) next.contactName = "errContactName";
+    // Email is optional in general, but not if it is the channel they asked
+    // to be answered on — otherwise the request arrives unreplyable.
+    if (form.preferredChannel === "email" && !form.email.trim()) {
+      next.email = "errEmailNeeded";
+    }
     setErrors(next);
     return Object.keys(next).length === 0;
   }
@@ -114,6 +114,35 @@ export function CommissionForm({
   }
 
   if (reference) {
+    /**
+     * What the buyer sees depends on the channel they picked, because the
+     * channels are not equivalent. Phone and email need nothing further from
+     * them. WhatsApp is worth opening now, prefilled. Messenger *requires*
+     * them to write first — a Page cannot start that conversation — so there
+     * the button is the whole point rather than a shortcut.
+     */
+    const channel = form.preferredChannel;
+    const nextKey = (
+      {
+        whatsapp: "nextWhatsapp",
+        messenger: "nextMessenger",
+        phone: "nextPhone",
+        email: "nextEmail",
+      } as const
+    )[channel];
+
+    const summary = commissionMessage(form, reference, lang);
+
+    const action =
+      channel === "whatsapp"
+        ? {
+            href: whatsappWithCommission(form, reference, lang),
+            label: t("openWhatsapp", lang),
+          }
+        : channel === "messenger"
+          ? { href: CHANNELS.messenger, label: t("openMessenger", lang) }
+          : null;
+
     return (
       <div className="mt-10 rounded-sm border border-bone bg-paper-raised p-8 text-center">
         <p className="font-display text-3xl text-ink" lang={lang}>
@@ -122,23 +151,47 @@ export function CommissionForm({
         <p className="mx-auto mt-3 max-w-sm text-ink-soft" lang={lang}>
           {t("submitDoneBody", lang)}
         </p>
+
         <p className="mt-6 font-mono text-2xl tracking-wider text-oxblood">
           {reference}
         </p>
+
+        {/* Messenger cannot carry a prefilled message, so make the code easy
+            to take across rather than asking anyone to retype it. */}
+        <button
+          type="button"
+          onClick={() => {
+            navigator.clipboard?.writeText(summary).then(
+              () => setCopied(true),
+              () => setCopied(false),
+            );
+          }}
+          className="mt-2 text-xs text-ink-faint underline decoration-ink-faint/40 underline-offset-4 hover:text-ink"
+        >
+          {t(copied ? "copiedReference" : "copyReference", lang)}
+        </button>
+
+        <p className="mx-auto mt-6 max-w-sm leading-relaxed text-ink-soft" lang={lang}>
+          {t(nextKey, lang)}
+        </p>
+
         <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <a
-            href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(reference)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full bg-ink px-6 py-3 text-sm font-medium text-paper hover:bg-oxblood"
-          >
-            WhatsApp
-          </a>
+          {action && (
+            <a
+              href={action.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full bg-ink px-6 py-3 text-sm font-medium text-paper hover:bg-oxblood"
+            >
+              {action.label}
+            </a>
+          )}
           <button
             type="button"
             onClick={() => {
               setForm(EMPTY);
               setReference(null);
+              setCopied(false);
             }}
             className="rounded-full border border-ink/20 px-6 py-3 text-sm text-ink hover:border-ink/50"
           >
@@ -276,9 +329,10 @@ export function CommissionForm({
               onChange={(e) => set("size", e.target.value)}
               className={inputClass(false)}
             >
+              <option value="">{t("sizeUnsure", lang)}</option>
               {SIZES.map((size) => (
                 <option key={size.value} value={size.value}>
-                  {size.literal ?? t(size.labelKey, lang)}
+                  {pick(size.label, lang)}
                 </option>
               ))}
             </select>
@@ -351,7 +405,13 @@ export function CommissionForm({
           </Field>
           <Field
             label={t("fieldEmail", lang)}
-            hint={t("fieldEmailOptional", lang)}
+            hint={
+              form.preferredChannel === "email"
+                ? undefined
+                : t("fieldEmailOptional", lang)
+            }
+            error={errors.email}
+            required={form.preferredChannel === "email"}
             lang={lang}
           >
             <input
@@ -359,7 +419,7 @@ export function CommissionForm({
               value={form.email}
               onChange={(e) => set("email", e.target.value)}
               autoComplete="email"
-              className={inputClass(false)}
+              className={inputClass(Boolean(errors.email))}
             />
           </Field>
         </div>
@@ -367,7 +427,7 @@ export function CommissionForm({
         <Field label={t("fieldChannel", lang)} lang={lang} className="mt-6">
           <ChipGroup
             name="channel"
-            options={CHANNELS.map((c) => ({
+            options={CHANNEL_OPTIONS.map((c) => ({
               value: c.value,
               label: t(c.labelKey, lang),
             }))}

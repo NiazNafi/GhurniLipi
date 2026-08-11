@@ -256,9 +256,67 @@ if (manifest.storage?.provider !== "supabase") {
   }
 }
 
+// ── contact channels ───────────────────────────────────────────────────────
+// Requirements §4.7: for this market the chat buttons carry as much weight as
+// the form. A placeholder handle is a button that silently loses the order.
+console.log("\ncontact channels");
+
+const siteSource = readFileSync(
+  path.join(ROOT, "src", "data", "site.ts"),
+  "utf8",
+);
+const placeholderBlock = siteSource.match(
+  /export const CHANNEL_PLACEHOLDERS = \{([\s\S]*?)\} as const;/,
+);
+
+if (!placeholderBlock) {
+  fail("could not read CHANNEL_PLACEHOLDERS from src/data/site.ts");
+  failures += 1;
+} else {
+  const placeholders = [...placeholderBlock[1].matchAll(/(\w+):\s*"([^"]*)"/g)];
+  const stillDefault = placeholders.filter(([, key, value]) => {
+    const live = siteSource.match(
+      new RegExp(`\\n\\s*${key}:\\s*"([^"]*)"`),
+    );
+    return live && live[1] === value;
+  });
+
+  check(
+    stillDefault.length === 0,
+    `all ${placeholders.length} handles configured`,
+    `${stillDefault.length} still placeholder: ${stillDefault.map(([, k]) => k).join(", ")}`,
+  );
+  if (stillDefault.length > 0) {
+    info("Those chat buttons currently lead nowhere.");
+    info("Edit the CONTACT CHANNELS block in src/data/site.ts.");
+  }
+
+  /**
+   * wa.me needs full international format. A local Bangladeshi number
+   * (01745984130) is the easy mistake here: it looks right, the link builds
+   * without complaint, and WhatsApp answers with "invalid phone number"
+   * instead of a chat. Nothing on the site would reveal that.
+   */
+  const wa = siteSource.match(/\n\s*whatsapp:\s*"([^"]*)"/)?.[1] ?? "";
+  if (wa && !stillDefault.some(([, k]) => k === "whatsapp")) {
+    const problem = wa.startsWith("0")
+      ? "starts with 0 — drop it and prepend the country code (880 for Bangladesh)"
+      : /\D/.test(wa)
+        ? "contains non-digits — no +, spaces or dashes"
+        : wa.length < 11 || wa.length > 15
+          ? `is ${wa.length} digits — expected 11-15 including the country code`
+          : null;
+    check(
+      problem === null,
+      `whatsapp ${wa} is a valid international number`,
+      `whatsapp "${wa}" ${problem}`,
+    );
+  }
+}
+
 console.log(
   failures === 0
-    ? "\n\x1b[32mall checks passed\x1b[0m — catalogue and media both served from Supabase\n"
+    ? "\n\x1b[32mall checks passed\x1b[0m — catalogue, media and channels all live\n"
     : `\n\x1b[31m${failures} check(s) failed\x1b[0m\n`,
 );
 

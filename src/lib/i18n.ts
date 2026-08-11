@@ -167,8 +167,46 @@ export const DICT = {
   submitting: { bn: "পাঠানো হচ্ছে…", en: "Sending…" },
   submitDone: { bn: "পৌঁছে গেছে", en: "That reached me" },
   submitDoneBody: {
-    bn: "আপনার রেফারেন্স নম্বর নিচে। মেসেঞ্জারে কথা বললে এই নম্বরটি বলবেন।",
-    en: "Your reference is below. Quote it if you message me.",
+    bn: "আপনার রেফারেন্স নম্বর নিচে। কথা বলার সময় এই নম্বরটি বলবেন।",
+    en: "Your reference is below. Quote it whenever we speak.",
+  },
+  /** What happens next, per channel the buyer chose. */
+  nextWhatsapp: {
+    bn: "হোয়াটসঅ্যাপে উত্তর দেব। চাইলে এখনই কথা শুরু করে রাখতে পারেন — রেফারেন্সটি লেখা থাকবে।",
+    en: "I will reply on WhatsApp. You can open the thread now if you like — the reference will already be written in.",
+  },
+  nextMessenger: {
+    bn: "মেসেঞ্জারে উত্তর দিতে হলে আগে আপনাকে একটি বার্তা পাঠাতে হবে — ফেসবুক পেজ থেকে আগে কথা শুরু করা যায় না। নিচের বোতামে চাপ দিয়ে রেফারেন্সটি পাঠিয়ে দিন।",
+    en: "For Messenger you have to write first — a Facebook Page cannot start a conversation. Tap below and send me the reference, and I will pick it up from there.",
+  },
+  nextPhone: {
+    bn: "আপনার দেওয়া নম্বরে ফোন করব। আর কিছু করতে হবে না।",
+    en: "I will call the number you gave. Nothing further needed from you.",
+  },
+  nextEmail: {
+    bn: "আপনার ইমেইলে উত্তর পাঠাব। আর কিছু করতে হবে না।",
+    en: "I will reply to your email address. Nothing further needed from you.",
+  },
+  openMessenger: { bn: "মেসেঞ্জারে পাঠান", en: "Send it on Messenger" },
+  openWhatsapp: { bn: "হোয়াটসঅ্যাপে পাঠান", en: "Send it on WhatsApp" },
+  copyReference: { bn: "সব তথ্য কপি করুন", en: "Copy the whole request" },
+  copiedReference: { bn: "কপি হয়েছে", en: "Copied" },
+  /** Heading of the message a buyer sends over WhatsApp or pastes into chat. */
+  msgTitle: { bn: "ঘূর্ণিলিপি — কাজের অনুরোধ", en: "ghurnilipi — commission request" },
+  msgReference: { bn: "রেফারেন্স", en: "Reference" },
+  msgFrom: { bn: "আমি", en: "From" },
+  /**
+   * Statement labels for the chat message. The form's own labels are phrased as
+   * questions — "কী নেবেন?" — which read as nonsense with an answer colonned
+   * onto them. Only the fields whose form label is a question need one here.
+   */
+  msgScript: { bn: "লিপি", en: "Script" },
+  msgProduct: { bn: "যা নিতে চাই", en: "Item" },
+  msgDeadline: { bn: "কবে দরকার", en: "Needed by" },
+  msgNotes: { bn: "নোট", en: "Notes" },
+  errEmailNeeded: {
+    bn: "ইমেইলে উত্তর চাইলে ইমেইল ঠিকানাটি দিন",
+    en: "Please give an email address if you want the reply by email",
   },
   submitAnother: { bn: "আরেকটি পাঠান", en: "Send another" },
   orChat: { bn: "অথবা সরাসরি কথা বলুন", en: "Or just message me" },

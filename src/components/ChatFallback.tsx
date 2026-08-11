@@ -1,6 +1,6 @@
 "use client";
 
-import { SITE } from "@/data/site";
+import { CHANNELS } from "@/lib/channels";
 import { t } from "@/lib/i18n";
 import { useUiStore } from "@/store/ui";
 
@@ -24,7 +24,7 @@ export function ChatFallback() {
       </p>
       <div className="mt-5 flex flex-wrap gap-3">
         <a
-          href={`https://wa.me/${SITE.whatsapp}`}
+          href={CHANNELS.whatsapp}
           target="_blank"
           rel="noopener noreferrer"
           className="rounded-full bg-ink px-6 py-3 text-sm font-medium text-paper transition-colors hover:bg-oxblood"
@@ -32,7 +32,7 @@ export function ChatFallback() {
           WhatsApp
         </a>
         <a
-          href={SITE.messenger}
+          href={CHANNELS.messenger}
           target="_blank"
           rel="noopener noreferrer"
           className="rounded-full border border-ink/20 px-6 py-3 text-sm text-ink transition-colors hover:border-ink/50"

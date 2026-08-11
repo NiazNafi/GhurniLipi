@@ -72,6 +72,11 @@ export async function submitCommission(
   if (!payload.contact_name) {
     fieldErrors.contactName = "errContactName";
   }
+  // Asking to be answered by email without leaving one makes the request
+  // unreplyable, so it is refused rather than stored as a dead lead.
+  if (payload.preferred_channel === "email" && !payload.email) {
+    fieldErrors.email = "errEmailNeeded";
+  }
 
   if (Object.keys(fieldErrors).length > 0) {
     return { ok: false, error: "errGeneric", fieldErrors };
